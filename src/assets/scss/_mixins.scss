@@ -1,0 +1,30 @@
+@mixin main-container {
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@mixin tablet {
+  @media (max-width: 1170px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin font-primary($font-size: 24px, $color: #2d2d3c) {
+  font-family: 'Dosis', sans-serif;
+  font-size: $font-size;
+  color: $color;
+}
+
+@mixin font-secondary($font-size: 16px, $color: #2d2d3c) {
+  font-family: 'Open Sans', sans-serif;
+  font-size: $font-size;
+  color: $color;
+}
