@@ -18,7 +18,6 @@
     </p>
     <section class="lists">
       <p class="subtitle">See also <span class="focus">filter</span> lists</p>
-      <pre>{{ TEST }}</pre>
       <link-component href="/lists/ingredients">
         Ingredients
       </link-component>
@@ -46,14 +45,11 @@ export default {
   data () {
     return {
       text: '',
-      TEST: null
+      drink: {}
     }
   },
-  async asyncData ({ app }) {
-    const response = await app.$service.drinks.getRandom()
-    return {
-      drink: response.drinks[0]
-    }
+  async created () {
+    await this.getRandom()
   },
   methods: {
     handleSearch () {
