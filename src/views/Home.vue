@@ -18,6 +18,9 @@
     </p>
     <section class="lists">
       <p class="subtitle">See also <span class="focus">filter</span> lists</p>
+      <p class="description">
+        The filters below show lists of ingredients, drink glasses, alcohol content in drinks and lists of categories of drinks
+      </p>
       <link-component href="/lists/ingredients">
         Ingredients
         <img src="/svg/ingredients.svg" alt="Ingredients" class="title-icon">
@@ -108,6 +111,14 @@ export default {
     .title-icon {
       width: 24px;
       height: 24px;
+    }
+
+    .description {
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 15px;
+      line-height: 20px;
+      color: $gray-dark;
     }
   }
 
