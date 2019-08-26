@@ -78,9 +78,16 @@ export default {
   }
 
   .image {
+    max-width: 380px;
+    width: 100%;
+    height: auto;
     display: block;
     margin: 20px auto;
-    border: 4px solid #000;
+    border: 3px solid #010101;
+
+    @include mobile {
+      max-width: 240px;
+    }
   }
 
   .title {
