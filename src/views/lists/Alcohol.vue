@@ -14,40 +14,41 @@
         :key="`ingredient_${index}`"
         class="item"
       >
-        <nuxt-link
+        <router-link
           :to="`/search?query=${ingredient.strAlcoholic}&criteria=alcohol`"
           class="link"
         >
           {{ ingredient.strAlcoholic }}
-        </nuxt-link>
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'PageSaturation',
-    head () {
-      return {
-        title: 'Cocktails alcohol saturation - FunnyDrinks',
-        meta: [
-          { hid: 'description', name: 'description', content: 'Choose the perfect alcohol saturation in your drink and discover the list of great cocktails!' },
-          { hid: 'og:title', property: 'og:title', content: 'Cocktails alcohol saturation - FunnyDrinks' },
-          { hid: 'og:description', property: 'og:description', content: 'Choose the perfect alcohol saturation in your drink and discover the list of great cocktails!' }
-        ],
-        link: [
-          { rel: 'canonical', href: 'https://otejporze.pl/lists/alcohol' }
-        ]
-      }
-    },
-    async asyncData ({ app }) {
-      const response = await app.$service.getList.alcohol()
-      return {
-        ingredients: response.drinks
-      }
+export default {
+  name: 'PageSaturation',
+  metaInfo: {
+    title: 'Cocktails alcohol saturation - FunnyDrinks',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'Choose the perfect alcohol saturation in your drink and discover the list of great cocktails!' },
+      { vmid: 'og:title', property: 'og:title', content: 'Cocktails alcohol saturation - FunnyDrinks' },
+      { vmid: 'og:description', property: 'og:description', content: 'Choose the perfect alcohol saturation in your drink and discover the list of great cocktails!' }
+    ],
+    link: [
+      { rel: 'canonical', href: 'https://otejporze.pl/lists/alcohol' }
+    ]
+  },
+  data () {
+    return {
+      ingredients: []
     }
+  },
+  async created () {
+    const response = await this.$service.getList.alcohol()
+    this.ingredients = response.drinks
   }
+}
 </script>
 
 <style lang="scss" scoped>

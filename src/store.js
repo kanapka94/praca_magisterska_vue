@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import service from '@/service'
 
 Vue.use(Vuex)
 
@@ -21,13 +22,13 @@ export default new Vuex.Store({
       commit('SET_LOADING', true)
       let response = []
       if (payload.value && payload.criteria) {
-        let service = this.$service.filter[payload.criteria]
+        let getMethod = service.filter[payload.criteria]
         if (payload.criteria === 'id') {
-          service = this.$service.drinks.getDrinkById
+          getMethod = service.drinks.getDrinkById
         } else if (payload.criteria === 'name') {
-          service = this.$service.drinks.getDrinkByName
+          getMethod = service.drinks.getDrinkByName
         }
-        response = await service(payload.value)
+        response = await getMethod(payload.value)
       }
       commit('SET_DRINKS', response.drinks || [])
       setTimeout(() => {

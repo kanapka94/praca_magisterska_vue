@@ -10,44 +10,47 @@
     </p>
     <ul class="ingredients">
       <li
-        v-for="(ingredient, index) in ingredients"
+        v-for="(item, index) in items"
         :key="`ingredient_${index}`"
         class="item"
       >
-        <nuxt-link
-          :to="`/search?query=${ingredient.strCategory}&criteria=categories`"
+        <router-link
+          :to="`/search?query=${item.strCategory}&criteria=categories`"
           class="link"
         >
-          {{ ingredient.strCategory }}
-        </nuxt-link>
+          {{ item.strCategory }}
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'PageCategories',
-    head () {
-      return {
-        title: 'Cocktails categories - FunnyDrinks',
-        meta: [
-          { hid: 'description', name: 'description', content: 'Discover your tastes and choose drinks from the categories best suited to you!' },
-          { hid: 'og:title', property: 'og:title', content: 'Cocktails categories - FunnyDrinks' },
-          { hid: 'og:description', property: 'og:description', content: 'Discover your tastes and choose drinks from the categories best suited to you!' }
-        ],
-        link: [
-          { rel: 'canonical', href: 'https://otejporze.pl/lists/categories' }
-        ]
-      }
-    },
-    async asyncData ({ app }) {
-      const response = await app.$service.getList.categories()
-      return {
-        ingredients: response.drinks
-      }
+export default {
+  name: 'PageCategories',
+  head () {
+    return {
+      title: 'Cocktails categories - FunnyDrinks',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Discover your tastes and choose drinks from the categories best suited to you!' },
+        { hid: 'og:title', property: 'og:title', content: 'Cocktails categories - FunnyDrinks' },
+        { hid: 'og:description', property: 'og:description', content: 'Discover your tastes and choose drinks from the categories best suited to you!' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://otejporze.pl/lists/categories' }
+      ]
     }
+  },
+  data () {
+    return {
+      items: []
+    }
+  },
+  async created () {
+    const response = await this.$service.getList.categories()
+    this.items = response.drinks
   }
+}
 </script>
 
 <style lang="scss" scoped>

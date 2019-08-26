@@ -29,15 +29,13 @@ const PLACEHOLDERS = {
 
 export default {
   name: 'PageSearch',
-  head () {
-    return {
-      title: 'Search cocktails - FunnyDrinks',
-      meta: [
-        { hid: 'description', name: 'description', content: 'Search for the best drinks and choose the ones that suit you best' },
-        { hid: 'og:title', property: 'og:title', content: 'Search cocktails - FunnyDrinks' },
-        { hid: 'og:description', property: 'og:description', content: 'Search for the best drinks and choose the ones that suit you best' }
-      ]
-    }
+  metaInfo: {
+    title: 'Search cocktails - FunnyDrinks',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'Search for the best drinks and choose the ones that suit you best' },
+      { vmid: 'og:title', property: 'og:title', content: 'Search cocktails - FunnyDrinks' },
+      { vmid: 'og:description', property: 'og:description', content: 'Search for the best drinks and choose the ones that suit you best' }
+    ]
   },
   components: { SearchResults, SearchBar },
   data () {
@@ -59,13 +57,14 @@ export default {
       return PLACEHOLDERS[this.form.criteria || 'name']
     }
   },
-  async asyncData ({ query, store }) {
+  async created () {
+    const query = this.$route.query
     const payload = {
       value: query.query,
       criteria: query.criteria
     }
-    await store.dispatch('fetchDrinks', payload)
-    store.commit('SET_LOADING', false)
+    await this.$store.dispatch('fetchDrinks', payload)
+    this.$store.commit('SET_LOADING', false)
   },
   methods: {
     async handleSearch () {

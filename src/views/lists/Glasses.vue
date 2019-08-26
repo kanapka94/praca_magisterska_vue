@@ -9,44 +9,47 @@
     </p>
     <ul class="ingredients">
       <li
-        v-for="(ingredient, index) in ingredients"
+        v-for="(item, index) in items"
         :key="`ingredient_${index}`"
         class="item"
       >
-        <nuxt-link
-          :to="`/search?query=${ingredient.strGlass}&criteria=glasses`"
+        <router-link
+          :to="`/search?query=${item.strGlass}&criteria=glasses`"
           class="link"
         >
-          {{ ingredient.strGlass }}
-        </nuxt-link>
+          {{ item.strGlass }}
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'PageGlasses',
-    head () {
-      return {
-        title: 'Cocktails glasses - FunnyDrinks',
-        meta: [
-          { hid: 'description', name: 'description', content: 'Choose the perfect cocktail for your glass and enjoy a beautiful-looking drink!' },
-          { hid: 'og:title', property: 'og:title', content: 'Cocktails glasses - FunnyDrinks' },
-          { hid: 'og:description', property: 'og:description', content: 'Choose the perfect cocktail for your glass and enjoy a beautiful-looking drink!' }
-        ],
-        link: [
-          { rel: 'canonical', href: 'https://otejporze.pl/lists/glasses' }
-        ]
-      }
-    },
-    async asyncData ({ app }) {
-      const response = await app.$service.getList.glasses()
-      return {
-        ingredients: response.drinks
-      }
+export default {
+  name: 'PageGlasses',
+  head () {
+    return {
+      title: 'Cocktails glasses - FunnyDrinks',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Choose the perfect cocktail for your glass and enjoy a beautiful-looking drink!' },
+        { hid: 'og:title', property: 'og:title', content: 'Cocktails glasses - FunnyDrinks' },
+        { hid: 'og:description', property: 'og:description', content: 'Choose the perfect cocktail for your glass and enjoy a beautiful-looking drink!' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://otejporze.pl/lists/glasses' }
+      ]
     }
+  },
+  data () {
+    return {
+      items: []
+    }
+  },
+  async created () {
+    const response = await this.$service.getList.glasses()
+    this.items = response.drinks
   }
+}
 </script>
 
 <style lang="scss" scoped>
