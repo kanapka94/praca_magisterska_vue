@@ -35,7 +35,7 @@ export default {
     position: relative;
 
     &::before {
-      content: 'Strona główna';
+      content: 'Home Page';
       position: absolute;
       z-index: 0;
       color: $gray-dark;
