@@ -12,7 +12,6 @@
     <details-list :details="details"/>
     <p class="ingredients-title">
       {{ drink.strDrink }} ingredients
-      <img src="/svg/ingredients.svg" alt="Ingredients" class="title-icon">
     </p>
     <ul class="ingredients">
       <li
@@ -65,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
   .random-drink {
-    max-width: 200px;
+    max-width: 220px;
   }
 
   .title {
