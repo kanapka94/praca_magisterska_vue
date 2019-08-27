@@ -3,12 +3,14 @@
     <the-menu />
     <router-view />
     <the-footer />
+    <cookies />
   </div>
 </template>
 
 <script>
 import TheMenu from '@/components/general/TheMenu/index'
 import TheFooter from '@/components/general/TheFooter'
+import Cookies from '@/components/general/Cookies'
 
 export default {
   metaInfo: {
@@ -20,9 +22,11 @@ export default {
   },
   components: {
     TheFooter,
-    TheMenu
+    TheMenu,
+    Cookies
   },
   mounted () {
+    // eslint-disable-next-line
     console.log('ENV', process.env.NODE_ENV)
     if (process.env.NODE_ENV === 'production') {
       const hotjarScriptSrc = '/js/hotjar.js'
