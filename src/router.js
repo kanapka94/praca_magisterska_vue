@@ -51,9 +51,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "ingredient" */ './views/Ingredient.vue')
     },
     {
-      path: '*',
+      path: '/error',
+      alias: '*',
       name: 'error',
-      component: ErrorPage
+      component: ErrorPage,
+      props: true
     }
   ]
 })

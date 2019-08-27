@@ -4,7 +4,7 @@
       <img src="/svg/arrow_left.svg" alt="Return to ingredients list" class="icon">
     </router-link>
     <img
-      :src="`https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient}-Medium.png`"
+      :src="image"
       :alt="ingredient.strIngredient"
       class="image"
     >
@@ -52,14 +52,17 @@ export default {
     let response = await this.$service.ingredients.getIngredientByName(params.id)
     if (response.ingredients === null) {
       response = await this.$service.ingredients.getIngredientById(params.id)
-      if (response.ingredients === null) {
+      if (response === '') {
         this.$router.push({
           name: 'error',
           params: {
-            status: 404,
-            message: 'Ingredient not found!'
+            error: {
+              status: 404,
+              message: 'Ingredient not found!'
+            }
           }
         })
+        return
       }
     }
     const ingredient = response.ingredients[0]
@@ -67,6 +70,14 @@ export default {
 
     this.ingredient = ingredient
     this.drinks = filteredDrinks.drinks
+  },
+  computed: {
+    image () {
+      if (this.ingredient.strIngredient) {
+        return `https://www.thecocktaildb.com/images/ingredients/${this.ingredient.strIngredient}-Medium.png`
+      }
+      return ''
+    }
   }
 }
 </script>

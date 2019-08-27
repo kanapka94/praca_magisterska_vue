@@ -6,9 +6,9 @@
     <p class="message">
       {{ error.message }}
     </p>
-    <nuxt-link to="/" class="link">
+    <router-link to="/" class="link">
       Return to home page
-    </nuxt-link>
+    </router-link>
   </div>
 </template>
 

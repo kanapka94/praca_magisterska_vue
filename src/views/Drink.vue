@@ -87,14 +87,17 @@ export default {
   async created () {
     const params = this.$route.params
     const response = await this.$service.drinks.getDrinkById(params.id)
-    if (response.drinks === null) {
+    if (response === '') {
       this.$router.push({
         name: 'error',
         params: {
-          status: 404,
-          message: 'Cocktail not found!'
+          error: {
+            status: 404,
+            message: 'Cocktail not found!'
+          }
         }
       })
+      return
     }
     this.drink = response.drinks[0]
   }

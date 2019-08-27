@@ -21,6 +21,14 @@ export default {
   components: {
     TheFooter,
     TheMenu
+  },
+  mounted () {
+    if (process.env.NODE_ENV === 'production') {
+      const hotjarScriptSrc = './js/hotjar.js'
+      const scriptElement = document.createElement('script')
+      scriptElement.setAttribute('src', hotjarScriptSrc)
+      document.head.appendChild(scriptElement)
+    }
   }
 }
 </script>
