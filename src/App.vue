@@ -23,6 +23,7 @@ export default {
     TheMenu
   },
   mounted () {
+    console.log('ENV', process.env.NODE_ENV)
     if (process.env.NODE_ENV === 'production') {
       const hotjarScriptSrc = '/js/hotjar.js'
       const scriptElement = document.createElement('script')
