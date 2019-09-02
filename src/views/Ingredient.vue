@@ -39,11 +39,14 @@ export default {
   },
   metaInfo () {
     return {
-      title: `Ingredient Details - ${this.ingredient.strIngredient} - FunnyDrinks`,
+      title: `${this.ingredient.strIngredient} - Ingredient Details - FunnyDrinks`,
       meta: [
-        { vmid: 'description', name: 'description', content: 'Read the information about the ingredient and select the most interesting ones to include in your drinks with great accuracy!' },
-        { vmid: 'og:title', property: 'og:title', content: `Ingredient Details - ${this.ingredient.strIngredient} - FunnyDrinks` },
-        { vmid: 'og:description', property: 'og:description', content: 'Read the information about the ingredient and select the most interesting ones to include in your drinks with great accuracy!' }
+        { vmid: 'description', name: 'description', content: `Read the information about ${this.ingredient.strIngredient} ingredient and select the most interesting ones to include in your drinks with great accuracy!` },
+        { vmid: 'og:title', property: 'og:title', content: `${this.ingredient.strIngredient} - Ingredient Details - FunnyDrinks` },
+        { vmid: 'og:description', property: 'og:description', content: `Read the information about ${this.ingredient.strIngredient} ingredient and select the most interesting ones to include in your drinks with great accuracy!` }
+      ],
+      link: [
+        { rel: 'canonical', href: `https://otejporze.pl/ingredient/${this.ingredient.strIngredient}` }
       ]
     }
   },

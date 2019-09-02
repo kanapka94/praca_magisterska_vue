@@ -76,11 +76,14 @@ export default {
   },
   metaInfo () {
     return {
-      title: `Drink Details - ${this.drink.strDrink} - FunnyDrinks`,
+      title: `${this.drink.strDrink} - Drink Details - FunnyDrinks`,
       meta: [
-        { vmid: 'description', name: 'description', content: 'Find out what your drink consists of, how to prepare it and how it presents!' },
-        { vmid: 'og:title', property: 'og:title', content: `Drink Details - ${this.drink.strDrink} - FunnyDrinks` },
-        { vmid: 'og:description', property: 'og:description', content: 'Find out what your drink consists of, how to prepare it and how it presents!' }
+        { vmid: 'description', name: 'description', content: `Find out what ${this.drink.strDrink} drink consists of, how to prepare it and how it presents!` },
+        { vmid: 'og:title', property: 'og:title', content: `${this.drink.strDrink} - Drink Details - FunnyDrinks` },
+        { vmid: 'og:description', property: 'og:description', content: `Find out what ${this.drink.strDrink} drink consists of, how to prepare it and how it presents!` }
+      ],
+      link: [
+        { rel: 'canonical', href: `https://otejporze.pl/drink/${this.drink.strDrink}` }
       ]
     }
   },
